@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+float a;
+float b = 5;
+float c = 3;
+int main() {
+	float d;
+	cout << "Ingrese un valor para la variable d que haga que el resultado de a=b+c/d haga que la variable a tenga un valor de 4: " << endl;
+	cin >> d;
+	cout << '\n';
+	a = b + c / d;
+	cout << a << "\n";
+	a = 0;
+	a = b * c;
+	cout << a << "\n";
+	a = 0;
+	a = b / d;
+	cout << a << "\n";
+	a = 0;
+	return 0;
+}
+//NOTAS:
+//Se cambio el tipo de datos de las variables y constantes de char a float.
+//Se escribieron las constantes fuera del int main.
+//Para obtener 4 se debe asignar un valor de -3 a la variable d.
+//Se agregaron saltos de linea con \n para mejorar la claridad visual.
