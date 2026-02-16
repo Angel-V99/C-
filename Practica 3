@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int main() {
+	cout << "INSTRUCCIONES: Ingrese unicamente numeros enteros para este juego. \n\n";
+	int num_secreto = 7;
+	int intento;
+	int new_game = 0;
+	do {
+		for (int i = 1; i <= 3; i++) {
+			cout << "Adivina en que numero esto pensando... \n";
+			cin >> intento;
+			if (intento == 7) {
+				cout << "Adivinaste, gracias por jugar. \n\n";
+				break;
+			}
+			else {
+				cout << "Numero equivocado. Vuelve a intentarlo. \n\n";
+			}
+		}
+		cout << "¿Deseas volver a jugar? Presiona 1 para continuar, presiona cualquier otro numero para terminar. \n";
+		cin >> new_game;
+	} while (new_game == 1);
+	return 0;
+}
