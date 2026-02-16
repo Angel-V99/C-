@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int Numeros[5];
+	char Vocales[5] = { 'a', 'e', 'i', 'o', 'u' };
+	int NumeroEntero;
+	for (int i = 0; i < 5; i++) {
+		cout << "Ingrese un numero entero: ";
+		cin >> NumeroEntero;
+		Numeros[i] = NumeroEntero;
+	}
+	cout << "\nNumeros ingresados:\n";
+	for (int i = 0; i < 5; i++) {
+		cout << "[" << Numeros[i] << "] ";
+		if ((Numeros[i] % 2) == 0) {
+			cout << " | Numero par\n";
+		}
+		else {
+			cout << " | Numero impar\n";
+		}
+	}
+	int ContWhile = 0;
+	while (ContWhile < 5) {
+		cout << "\n" << Numeros[ContWhile] << " + 1 + = " << (Numeros[ContWhile] + 1) << "\n";
+		ContWhile = ContWhile + 1;
+	}
+	cout << "\n\nVOCALES";
+	cout << "\n";
+	int ContVocales = 0;
+	while (ContVocales < 5) {
+		cout << "Vocal " << (ContVocales + 1) << ": " << Vocales[ContVocales] << "\n";
+		ContVocales = ContVocales + 1;
+	}
+	return 0;
+}
