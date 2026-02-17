@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+float Addition(float x, float y) {
+    return x + y;
+}
+float Subtraction(float x, float y) {
+    return x - y;
+}
+float Multiplication(float x, float y) {
+    return x * y;
+}
+float Division(float x, float y) {
+    return x / y;
+}
+int main() {
+    while (true) {
+        int Menu;
+        float x;
+        float y;
+        cout << "Ingrese el numero de la operacion que desea realizar:\n";
+        cout << "1. SUMA\n";
+        cout << "2. RESTA\n";
+        cout << "3. MULTIPLICACION\n";
+        cout << "4. DIVISION\n";
+        cout << "5. SALIR\n";
+        cout << "Opcion: ";
+        cin >> Menu;
+        if (Menu < 1 || Menu > 5) {
+            cout << "Valor invalido. Eliga una opcion entre 1 y 4.";
+            continue;
+        }
+        else if (Menu == 1) {
+            cout << "\n-SUMA-\n";
+            cout << "Introduzca el primer numero: ";
+            cin >> x;
+            cout << "Introduzca el segundo numero: ";
+            cin >> y;
+            cout << x << " + " << y << " = " << Addition(x, y) << endl;
+            cout << endl;
+            continue;
+        }
+        else if (Menu == 2) {
+            cout << "\n-RESTA-\n";
+            cout << "Introduzca el primer numero: ";
+            cin >> x;
+            cout << "Introduzca el segundo numero: ";
+            cin >> y;
+            cout << x << " - " << y << " = " << Subtraction(x, y) << endl;
+            cout << endl;
+            continue;
+        }
+        else if (Menu == 3) {
+            cout << "\n-MULTIPLICACION-\n";
+            cout << "Introduzca el primer numero: ";
+            cin >> x;
+            cout << "Introduzca el segundo numero: ";
+            cin >> y;
+            cout << x << " x " << y << " = " << Multiplication(x, y) << endl;
+            cout << endl;
+            continue;
+        }
+        else if (Menu == 4) {
+            cout << "\n-DIVISION-\n";
+            cout << "Introduzca el primer numero: ";
+            cin >> x;
+            while (true) {
+                cout << "Introduzca el segundo numero, no use el cero como divisor: ";
+                cin >> y;
+                if (y == 0) {
+                    cout << "No se puede dividir entre cero. ";
+                    continue;
+                }
+                else {
+                    cout << x << " / " << y << " = " << Division(x, y) << endl;
+                    cout << endl;
+                    break;
+                }
+            } continue;
+        }
+        else if (Menu == 5) {
+            cout << "\n-HASTA LUEGO!-\n";
+            break;
+        }
+    }
+    return 0;
+}
