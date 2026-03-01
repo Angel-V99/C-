@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+struct book {
+	string title;
+	string author;
+	string genre;
+	string isbn;
+};
+struct library {
+	string name;
+	string address;
+	book bookinfo[50];
+};
+int main() {
+	library miBiblioteca;
+	miBiblioteca.name = "Biblioteca Central";
+	miBiblioteca.address = "P. Sherman, Calle Wallaby 42, Sidney";
+	miBiblioteca.bookinfo[0] = { "Don Quijote de la Mancha", "Miguel de Cervantes", "Novela", "001" };
+	miBiblioteca.bookinfo[1] = { "La Galatea", "Miguel de Cervantes", "Novela", "002" };
+	miBiblioteca.bookinfo[2] = { "Novelas Ejemplares", "Miguel de Cervantes", "Cuentos", "003" };
+	miBiblioteca.bookinfo[3] = { "Viaje del Parnaso", "Miguel de Cervantes", "Poesía", "004" };
+	miBiblioteca.bookinfo[4] = { "Fuenteovejuna", "Lope de Vega", "Teatro", "005" };
+	miBiblioteca.bookinfo[5] = { "El Caballero de Olmedo", "Lope de Vega", "Teatro", "006" };
+	miBiblioteca.bookinfo[6] = { "La Dorotea", "Lope de Vega", "Novela", "007" };
+	miBiblioteca.bookinfo[7] = { "La Vida es Sueño", "Pedro Calderón de la Barca", "Teatro", "008" };
+	miBiblioteca.bookinfo[8] = { "El Alcalde de Zalamea", "Pedro Calderón de la Barca", "Teatro", "009" };
+	miBiblioteca.bookinfo[9] = { "La Celestina", "Fernando de Rojas", "Novela", "010" };
+	miBiblioteca.bookinfo[10] = { "El Lazarillo de Tormes", "Anónimo", "Novela", "011" };
+	miBiblioteca.bookinfo[11] = { "Amadís de Gaula", "Garci Rodríguez de Montalvo", "Novela", "012" };
+	miBiblioteca.bookinfo[12] = { "El Conde Lucanor", "Don Juan Manuel", "Cuentos", "013" };
+	miBiblioteca.bookinfo[13] = { "La Divina Comedia", "Dante Alighieri", "Poesía", "014" };
+	miBiblioteca.bookinfo[14] = { "Decamerón", "Giovanni Boccaccio", "Cuentos", "015" };
+	miBiblioteca.bookinfo[15] = { "Hamlet", "William Shakespeare", "Teatro", "016" };
+	miBiblioteca.bookinfo[16] = { "Romeo y Julieta", "William Shakespeare", "Teatro", "017" };
+	miBiblioteca.bookinfo[17] = { "Macbeth", "William Shakespeare", "Teatro", "018" };
+	miBiblioteca.bookinfo[18] = { "Otelo", "William Shakespeare", "Teatro", "019" };
+	miBiblioteca.bookinfo[19] = { "Sueño de una noche de verano", "William Shakespeare", "Teatro", "020" };
+	miBiblioteca.bookinfo[20] = { "La Ilíada", "Homero", "Épica", "021" };
+	miBiblioteca.bookinfo[21] = { "La Odisea", "Homero", "Épica", "022" };
+	miBiblioteca.bookinfo[22] = { "Edipo Rey", "Sófocles", "Teatro", "023" };
+	miBiblioteca.bookinfo[23] = { "Antígona", "Sófocles", "Teatro", "024" };
+	miBiblioteca.bookinfo[24] = { "Medea", "Eurípides", "Teatro", "025" };
+	miBiblioteca.bookinfo[25] = { "Las Nubes", "Aristófanes", "Teatro", "026" };
+	miBiblioteca.bookinfo[26] = { "Fausto", "Johann Wolfgang von Goethe", "Drama", "027" };
+	miBiblioteca.bookinfo[27] = { "Werther", "Johann Wolfgang von Goethe", "Novela", "028" };
+	miBiblioteca.bookinfo[28] = { "Orgullo y Prejuicio", "Jane Austen", "Novela", "029" };
+	miBiblioteca.bookinfo[29] = { "Sentido y Sensibilidad", "Jane Austen", "Novela", "030" };
+	miBiblioteca.bookinfo[30] = { "Drácula", "Bram Stoker", "Novela", "031" };
+	miBiblioteca.bookinfo[31] = { "Frankenstein", "Mary Shelley", "Novela", "032" };
+	miBiblioteca.bookinfo[32] = { "Moby Dick", "Herman Melville", "Novela", "033" };
+	miBiblioteca.bookinfo[33] = { "La Isla del Tesoro", "Robert Louis Stevenson", "Novela", "034" };
+	miBiblioteca.bookinfo[34] = { "Las Aventuras de Tom Sawyer", "Mark Twain", "Novela", "035" };
+	miBiblioteca.bookinfo[35] = { "Las Aventuras de Huckleberry Finn", "Mark Twain", "Novela", "036" };
+	miBiblioteca.bookinfo[36] = { "Veinte mil leguas de viaje submarino", "Julio Verne", "Ciencia ficción", "037" };
+	miBiblioteca.bookinfo[37] = { "Viaje al centro de la Tierra", "Julio Verne", "Ciencia ficción", "038" };
+	miBiblioteca.bookinfo[38] = { "La vuelta al mundo en 80 días", "Julio Verne", "Aventura", "039" };
+	miBiblioteca.bookinfo[39] = { "De la Tierra a la Luna", "Julio Verne", "Ciencia ficción", "040" };
+	miBiblioteca.bookinfo[40] = { "Los Miserables", "Victor Hugo", "Novela", "041" };
+	miBiblioteca.bookinfo[41] = { "Nuestra Señora de París", "Victor Hugo", "Novela", "042" };
+	miBiblioteca.bookinfo[42] = { "Los Tres Mosqueteros", "Alexandre Dumas", "Aventura", "043" };
+	miBiblioteca.bookinfo[43] = { "El Conde de Montecristo", "Alexandre Dumas", "Aventura", "044" };
+	miBiblioteca.bookinfo[44] = { "Crimen y Castigo", "Fiódor Dostoyevski", "Novela", "045" };
+	miBiblioteca.bookinfo[45] = { "La Metamorfosis", "Franz Kafka", "Novela", "046" };
+	miBiblioteca.bookinfo[46] = { "El Retrato de Dorian Gray", "Oscar Wilde", "Novela", "047" };
+	miBiblioteca.bookinfo[47] = { "El Fantasma de la Ópera", "Gaston Leroux", "Novela", "048" };
+	miBiblioteca.bookinfo[48] = { "Cuentos de Edgar Allan Poe", "Edgar Allan Poe", "Cuentos", "049" };
+	miBiblioteca.bookinfo[49] = { "La Guerra de los Mundos", "H. G. Wells", "Ciencia ficción", "050" };
+	cout << "Bienvenido/a al registro virtual de la Biblioteca Central." << endl;
+	cout << "----------------------------------------------------------" << endl << endl;
+	cout << "Biblioteca: " << miBiblioteca.name << endl;
+	cout << "Direccion: " << miBiblioteca.address << endl << endl;
+	cout << "-------------------------------------------" << endl << endl;
+	cout << "Libros registrados:" << endl << endl;
+	for (int i = 0; i < 50; i++) {
+		cout << "Libro: " << miBiblioteca.bookinfo[i].title << endl;
+		cout << "Autor: " << miBiblioteca.bookinfo[i].author << endl;
+		cout << "Genero: " << miBiblioteca.bookinfo[i].genre << endl;
+		cout << "ISBN: " << miBiblioteca.bookinfo[i].isbn << endl;
+		cout << endl;
+	}
+	return 0;
+}
