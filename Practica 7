@@ -1,6 +1,17 @@
-#include <string>
 #include <iostream>
 using namespace std;
+int number;
+int factorial(int x) {
+	if (x == 0) {
+		return 1;
+	}
+	else {
+		return x * factorial(x - 1);
+	}
+}
 int main() {
+	cout << "Ingrese un numero entero para calcular su factorial: ";
+	cin >> number;
+	cout << "El factorial de " << number << " es: " << factorial(number);
 	return 0;
 }
