@@ -1,17 +1,95 @@
 #include <iostream>
 using namespace std;
-int number;
 int factorial(int x) {
-	if (x == 0) {
+	if (x == 0)
 		return 1;
-	}
-	else {
+	else
 		return x * factorial(x - 1);
-	}
+}
+int potencia(int a, int b) {
+	if (b == 0)
+		return 1;
+	else
+		return a * potencia(a, b - 1);
+}
+int mcd(int a, int b) {
+	if (b == 0)
+		return a;
+	else
+		return mcd(b, a % b);
+}
+int suma_digitos(int x) {
+	if (x == 0)
+		return 0;
+	else
+		return 1 + suma_digitos(x / 10);
 }
 int main() {
-	cout << "Ingrese un numero entero para calcular su factorial: ";
-	cin >> number;
-	cout << "El factorial de " << number << " es: " << factorial(number);
+	while (true) {
+		int Menu;
+		float x;
+		float y;
+		cout << "Ingrese el numero de la operacion que desea realizar:\n";
+		cout << "1. NUMERO FACTORIAL\n";
+		cout << "2. CALCULAR POTENCIA\n";
+		cout << "3. MAXIMO COMUN DIVISOR\n";
+		cout << "4. CONTADOR DE DIGITOS\n";
+		cout << "5. SALIR\n";
+		cout << "Opcion: ";
+		cin >> Menu;
+		cout << endl;
+		if (Menu < 1 || Menu > 5) {
+			cout << "\nValor invalido. Eliga una opcion entre 1 y 4.\n";
+			continue;
+		}
+		else if (Menu == 1) {
+			cout << "-NUMERO FACTORIAL-" << endl;
+			int Factorial;
+			cout << "Ingrese un numero entero para calcular su factorial: ";
+			cin >> Factorial;
+			cout << "El factorial de " << Factorial << " es: " << factorial(Factorial) << endl << endl;
+			continue;
+		}
+		else if (Menu == 2) {
+			cout << "-CALCULAR LA POTENCIA-" << endl;
+			int Base;
+			int Exponential;
+			cout << "Ingresa el numero base de la potencia: ";
+			cin >> Base;
+			cout << "Ingresa el exponente de la potencia: ";
+			cin >> Exponential;
+			cout << "Resultado: " << potencia(Base, Exponential) << endl << endl;
+			continue;
+		}
+		else if (Menu == 3) {
+			cout << "-MAXIMO COMUN DIVISOR-" << endl;
+			int NumMayor;
+			int NumMenor;
+			int Empty;
+			cout << "Ingrese un numero entero: ";
+			cin >> NumMayor;
+			cout << "Ingrese un segundo numero entero: ";
+			cin >> NumMenor;
+			if (NumMenor >= NumMayor) {
+				Empty = NumMayor;
+				NumMayor = NumMenor;
+				NumMenor = Empty;
+			}
+			cout << "El MCD de " << NumMayor << " y " << NumMenor << " es: " << mcd(NumMayor, NumMenor) << endl << endl;
+			continue;
+		}
+		else if (Menu == 4) {
+			cout << "-CONTADOR DE DIGITOS-" << endl;
+			int Numero;
+			cout << "Ingrese un numero entero para obtener la cantidad de digitos que contiene: ";
+			cin >> Numero;
+			cout << "El numero " << Numero << " tiene un total de: " << suma_digitos(Numero) << " digitos." << endl << endl;
+			continue;
+		}
+		else if (Menu == 5) {
+			cout << "\n-HASTA LUEGO!-\n";
+			break;
+		}
+	}
 	return 0;
 }
