@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int a[] = { 5, 2, -3, 7, 5, 1, 0 };
+	int* p;
+	int* q;
+	int* m;
+	int c, b;
+
+	p = a;
+	q = a;
+	m = q + 3;
+	b = *m--;
+	// Cuidado aquí: ¿se decrementa el puntero o el valor? R: Se decrementa el puntero, mas especificamente la direccion del arreglo a la que esta apuntando.
+
+	// Preguntas a responder en comentarios:
+
+	// ¿Cuánto vale b y c?
+	// R: La variable b vale 7, ya que en m se le asigno el valor en la 4ta posicion y LUEGO el puntero se recorrio hacia atras.
+	// R: La variable c vale 3. Ya que *(p + 3) = 7, *(p + 5) = 1, luego de recorrer el puntero de m quedo en la posicion 2, - 1 quedo en 2, y m = 7. Al final queda 7 + 1 + 2 - 7 = 3.
+
+	// ¿A dónde apuntan p, q y m?
+	// R: Las variables p y q apuntan las dos a la direccion en memoria del primer elemento del arreglo. Ya que al ser variables tipo pointer no pueden regresar un valor dentro de un arreglo, asi que en ves de igualarse al valor en primera posicion del arreglo, que deberia ser 5, por algun motivo C++ fuerza a las variables a convertirse en una llamada a la direccion del elemento, no a su valor en si, aunque no hayamos usado el signo &. O eso creo no entendi que paso ahi...
+	// R: Al principio m apuntaba a la 4ta posicion del arreglo, que es 7. Pero despues de declarar b su puntero se recorrio una posicion a la izquierda, asi que al final esta apuntando a la 3era posicion, que es -3.
+
+	c = *(p + 3) + *(p + 5) + *(m - 1) - b;
+	
+	cout << "Valor de b: " << b << " ---> Posicion en el arreglo." << endl;
+	cout << "Valor de c: " << c << " ---> Resultado de una operacion usando valores de un arreglo con punteros." << endl;
+	cout << "Puntero de p: " << p << " ---> Direccion en memoria del 1er elemento del arreglo en valor hexadecimal." << endl;
+	cout << "Puntero de q: " << q << " ---> Direccion en memoria del 1er elemento del arreglo en valor hexadecimal." << endl;
+	cout << "Puntero de m: " << m << " ---> Direccion en memoria del 3er elemento del arreglo en valor hexadecimal." << endl;
+	return 0;
+}
