@@ -24,11 +24,77 @@ int main() {
 	// R: Al principio m apuntaba a la 4ta posicion del arreglo, que es 7. Pero despues de declarar b su puntero se recorrio una posicion a la izquierda, asi que al final esta apuntando a la 3era posicion, que es -3.
 
 	c = *(p + 3) + *(p + 5) + *(m - 1) - b;
-	
+
 	cout << "Valor de b: " << b << " ---> Posicion en el arreglo." << endl;
 	cout << "Valor de c: " << c << " ---> Resultado de una operacion usando valores de un arreglo con punteros." << endl;
-	cout << "Puntero de p: " << p << " ---> Direccion en memoria del 1er elemento del arreglo en valor hexadecimal." << endl;
-	cout << "Puntero de q: " << q << " ---> Direccion en memoria del 1er elemento del arreglo en valor hexadecimal." << endl;
-	cout << "Puntero de m: " << m << " ---> Direccion en memoria del 3er elemento del arreglo en valor hexadecimal." << endl;
+	cout << "Puntero de p: " << *p << " ---> Direccion en memoria del 1er elemento del arreglo en valor hexadecimal." << endl;
+	cout << "Puntero de q: " << *q << " ---> Direccion en memoria del 1er elemento del arreglo en valor hexadecimal." << endl;
+	cout << "Puntero de m: " << *m << " ---> Direccion en memoria del 3er elemento del arreglo en valor hexadecimal." << endl;
+	return 0;
+}
+-------------------------------------------------------------------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+int main() {
+	int a[] = { 5, 2, -3, 7, 5, 1, 0 };
+	int* p;
+	int* q;
+	int* m;
+	int b, c;
+
+	p = a;
+	q = p;
+	m = q + 3;
+	b = *m++;
+
+	// Preguntas a responder en comentarios:
+
+	// ¿Cuánto vale b y c?
+	// R: La variable b vale 5, ya que en m se le asigno el valor en la 4ta posicion y LUEGO el puntero se recorrio hacia adelante.
+	// R: La variable c vale 154
+
+	// ¿A dónde apuntan p, q y m?
+	// R: La variable p apunta al primer elemento del arreglo. La variable q a la direccion en memoria del 1er elemento del arreglo.
+	// R: Al principio m apuntaba a la 4ta posicion del arreglo, que es 7. Pero despues de declarar b su puntero se recorrio una posicion a la derecha, asi que al final esta apuntando a la 5ta posicion, que es 5.
+
+	c = (*(p)+3 + *(p)+5 + *(m)-1) *b;
+
+	cout << "Valor de b: " << b << " ---> Posicion en el arreglo." << endl;
+	cout << "Valor de c: " << c << " ---> Resultado de una operacion usando valores de un arreglo con punteros." << endl;
+	cout << "Puntero de p: " << *p << " ---> Direccion en memoria del 1er elemento del arreglo en valor hexadecimal." << endl;
+	cout << "Puntero de q: " << *q << " ---> Direccion en memoria del 1er elemento del arreglo en valor hexadecimal." << endl;
+	cout << "Puntero de m: " << *m << " ---> Direccion en memoria del 3er elemento del arreglo en valor hexadecimal." << endl;
+	return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+int main() {
+	int a[] = { 10, 20, 30, 40, 50, 60, 70, 80 };
+	int* p;
+	int* q;
+	int* m;
+	int c = -1, b = -2;
+
+	p = a;
+	q = p + 1;
+	m = q + 3;
+	b = *(q--);
+
+	// Preguntas a responder en comentarios: 
+
+	// ¿Cuánto vale b y c?
+	// R: B vale 20 y c vale -80.
+
+	// ¿A dónde apuntan p, q y m?
+	// R: P y q apuntan al primer elemento, en el caso de q quedo asi luego de que se le recorriera un valor hacia atras al definir b. M apunta al 5to elemento del arreglo, 50.
+
+	c = (*(p + 3) - b * c + *(q + 5) - *(m - 1)) * c;
+
+	cout << "Valor de b: " << b << " ---> Posicion en el arreglo." << endl;
+	cout << "Valor de c: " << c << " ---> Resultado de una operacion usando valores de un arreglo con punteros." << endl;
+	cout << "Puntero de p: " << *p << " ---> Direccion en memoria del 1er elemento del arreglo en valor hexadecimal." << endl;
+	cout << "Puntero de q: " << *q << " ---> Direccion en memoria del 1er elemento del arreglo en valor hexadecimal." << endl;
+	cout << "Puntero de m: " << *m << " ---> Direccion en memoria del 5to elemento del arreglo en valor hexadecimal." << endl;
 	return 0;
 }
