@@ -1,0 +1,120 @@
+#include <iostream>
+using namespace std;
+struct Node {
+    int data;
+    Node* next;
+};
+Node* head = NULL;
+void addElement(int value) {
+    Node* newNode = new Node;
+    newNode->data = value;
+    newNode->next = NULL;
+    if (head == NULL) {
+        head = newNode;
+    }
+    else {
+        Node* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+}
+Node* searchElement(int value) {
+    Node* temp = head;
+    while (temp != NULL) {
+        if (temp->data == value) {
+            return temp;
+        }
+        temp = temp->next;
+    }
+    return NULL;
+}
+void modifyElement(int oldValue, int newValue) {
+    Node* found = searchElement(oldValue);
+    if (found != NULL) {
+        found->data = newValue;
+        cout << "Elemento modificado\n";
+    }
+    else {
+        cout << "Elemento no encontrado\n";
+    }
+}
+void deleteElement(int value) {
+    Node* temp = head;
+    Node* prev = NULL;
+    while (temp != NULL && temp->data != value) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == NULL) {
+        cout << "Elemento no encontrado\n";
+        return;
+    }
+    if (prev == NULL) {
+        head = temp->next;
+    }
+    else {
+        prev->next = temp->next;
+    }
+    delete temp;
+    cout << "Elemento borrado\n";
+}
+void displayList() {
+    Node* temp = head;
+    if (temp == NULL) {
+        cout << "La lista esta vacia\n";
+        return;
+    }
+    cout << "Lista de elementos: ";
+    while (temp != NULL) {
+        cout << temp->data << " -> ";
+        temp = temp->next;
+    }
+    cout << "NULL\n";
+}
+int main() {
+    int option, value, newValue;
+    do {
+        cout << "\nMENU\n";
+        cout << "1. Agregar elemento\n";
+        cout << "2. Buscar elemento\n";
+        cout << "3. Modificar elemento\n";
+        cout << "4. Borrar elemento\n";
+        cout << "5. Mostrar lista\n";
+        cout << "6. Salir\n";
+        cout << "Elija una opcion: ";
+        cin >> option;
+        switch (option) {
+        case 1:
+            cout << "Ingrese un valor: ";
+            cin >> value;
+            addElement(value);
+            break;
+        case 2:
+            cout << "Ingrese valor para buscar: ";
+            cin >> value;
+            if (searchElement(value) != NULL)
+                cout << "Elemento encontrado\n";
+            else
+                cout << "Elemento no encontrado\n";
+            break;
+        case 3:
+            cout << "Ingrese valor para modificar: ";
+            cin >> value;
+            cout << "Ingrese nuevo valor: ";
+            cin >> newValue;
+            modifyElement(value, newValue);
+            break;
+        case 4:
+            cout << "Ingrese valor a borrar: ";
+            cin >> value;
+            deleteElement(value);
+            break;
+        case 5:
+            displayList();
+            break;
+        }
+    } while (option != 6);
+    return 0;
+}
