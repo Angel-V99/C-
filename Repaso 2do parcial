@@ -1,0 +1,23 @@
+// -- REPASO EXAMEN 2DO PARCIAL --
+
+// -- RECURSIVIDAD --
+#include <iostream>
+using namespace std;
+int NumberRecursive;
+int Factorial(int n) {
+	if (n == 0) { // --> CASO BASE
+		n = 1;
+	}
+	else { // --> CASO GENERAL
+		n = n * Factorial(n - 1);
+	}
+	return n;
+}
+int main() {
+	cout << " --CALCULADORA DE FACTORIAL--" << endl;
+	cout << "Ingrese un numero para obtener su factorial: ";
+	cin >> NumberRecursive;
+	cout << endl << "El valor factorial del numero " << NumberRecursive << " es: " << Factorial(NumberRecursive) << endl;
+	cout << endl << "Hasta luego!";
+	return 0;
+}
