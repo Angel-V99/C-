@@ -21,3 +21,23 @@ int main() {
 	cout << endl << "Hasta luego!";
 	return 0;
 }
+
+--------------------------------------------------------------------------------------------------------------------------
+// -- PUNTEROS --
+// -- NOTAS --
+// * al declarar → indica que es un puntero
+// * al usar → obtiene el valor en la dirección
+// & → obtiene la dirección de una variable
+#include <iostream>
+using namespace std;
+int main() {
+	int num;
+	int* dir_num;
+	num = 20;
+	dir_num = &num;
+	cout << "Numero que yo puse: " << num << endl;
+	cout << "Posicion en memoria del numero que yo puse: " << &num << endl;
+	cout << "Valor almacenado en la direccion de memoria: " << *dir_num << endl;
+	cout << "Imprimir solo dir_num me da la direccion porque lo iguale aqui: dir_num = &num, osea que me regresa: " << dir_num << endl;
+	return 0;
+}
