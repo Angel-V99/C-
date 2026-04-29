@@ -1,0 +1,284 @@
+#include <iostream>
+#include <string>
+using namespace std;
+struct NodeEmployee {
+    int Id;
+    string Name;
+    float Salary;
+    NodeEmployee* Right;
+    NodeEmployee* Left;
+    NodeEmployee* Father;
+};
+NodeEmployee* CreateNode(int Id, string Name, float Salary, NodeEmployee* Father) {
+    NodeEmployee* NewNode = new NodeEmployee();
+    NewNode->Id = Id;
+    NewNode->Name = Name;
+    NewNode->Salary = Salary;
+    NewNode->Left = NULL;
+    NewNode->Right = NULL;
+    NewNode->Father = Father;
+    return NewNode;
+}
+void InsertNode(NodeEmployee*& BST, int Id, string Name, float Salary, NodeEmployee* Father) {
+    if (BST == NULL) {
+        NodeEmployee* NewNode = CreateNode(Id, Name, Salary, Father);
+        BST = NewNode;
+    }
+    else {
+        int RootValueId = BST->Id;
+        if (Id < RootValueId) {
+            InsertNode(BST->Left, Id, Name, Salary, BST);
+        }
+        else if (Id > RootValueId) {
+            InsertNode(BST->Right, Id, Name, Salary, BST);
+        }
+        else {
+            return;
+        }
+    }
+}
+void ShowBST(NodeEmployee* BST, int Counter) {
+    if (BST == NULL) {
+        return;
+    }
+    ShowBST(BST->Left, Counter);
+    cout << "| ID: " << BST->Id << endl;
+    cout << "| Nombre: " << BST->Name << endl;
+    cout << "| Salario: " << BST->Salary << endl << endl;
+    ShowBST(BST->Right, Counter);
+}
+bool Search(NodeEmployee* BST, int n) {
+    if (BST == NULL) {
+        return false;
+    }
+    else if (BST->Id == n) {
+        return true;
+    }
+    else if (n < BST->Id) {
+        return Search(BST->Left, n);
+    }
+    else {
+        return Search(BST->Right, n);
+    }
+}
+void PreOrderTraversal(NodeEmployee* BST) {
+    if (BST == NULL) {
+        return;
+    }
+    else {
+        cout << BST->Id << " - ";
+        PreOrderTraversal(BST->Left);
+        PreOrderTraversal(BST->Right);
+    }
+}
+void InOrderTraversal(NodeEmployee* BST) {
+    if (BST == NULL) {
+        return;
+    }
+    else {
+        InOrderTraversal(BST->Left);
+        cout << BST->Id << " - ";
+        InOrderTraversal(BST->Right);
+    }
+}
+void PostOrderTraversal(NodeEmployee* BST) {
+    if (BST == NULL) {
+        return;
+    }
+    else {
+        PostOrderTraversal(BST->Left);
+        PostOrderTraversal(BST->Right);
+        cout << BST->Id << " - ";
+    }
+}
+NodeEmployee* MinimumSearch(NodeEmployee* BST) {
+    if (BST == NULL) {
+        return NULL;
+    }
+    if (BST->Left) {
+        return MinimumSearch(BST->Left);
+    }
+    else {
+        return BST;
+    }
+}
+void ReplaceNode(NodeEmployee* BST, NodeEmployee* NewNode) {
+    if (BST->Father) {
+        if (BST->Father->Left == BST) {
+            BST->Father->Left = NewNode;
+        }
+        else if (BST->Father->Right == BST) {
+            BST->Father->Right = NewNode;
+        }
+    }
+    if (NewNode) {
+        NewNode->Father = BST->Father;
+    }
+}
+void DestroyNode(NodeEmployee* Node) {
+    Node->Left = NULL;
+    Node->Right = NULL;
+    Node->Father = NULL;
+    delete Node;
+}
+void DetachNode(NodeEmployee* EmptyNode) {
+    if (EmptyNode->Left && EmptyNode->Right) {
+        NodeEmployee* Smallest = MinimumSearch(EmptyNode->Right);
+        EmptyNode->Id = Smallest->Id;
+        EmptyNode->Name = Smallest->Name;
+        EmptyNode->Salary = Smallest->Salary;
+        DetachNode(Smallest);
+    }
+    else if (EmptyNode->Left) {
+        ReplaceNode(EmptyNode, EmptyNode->Left);
+        DestroyNode(EmptyNode);
+    }
+    else if (EmptyNode->Right) {
+        ReplaceNode(EmptyNode, EmptyNode->Right);
+        DestroyNode(EmptyNode);
+    }
+    else {
+        ReplaceNode(EmptyNode, NULL);
+        DestroyNode(EmptyNode);
+    }
+}
+void DeleteNode(NodeEmployee*& BST, int Id) {
+    if (BST == NULL) {
+        return;
+    }
+    else if (Id < BST->Id) {
+        DeleteNode(BST->Left, Id);
+    }
+    else if (Id > BST->Id) {
+        DeleteNode(BST->Right, Id);
+    }
+    else {
+        if (BST->Father == NULL) {
+            NodeEmployee* temp = BST;
+            if (BST->Left && BST->Right) {
+                NodeEmployee* Smallest = MinimumSearch(BST->Right);
+                BST->Id = Smallest->Id;
+                BST->Name = Smallest->Name;
+                BST->Salary = Smallest->Salary;
+                DetachNode(Smallest);
+            }
+            else if (BST->Left) {
+                BST = BST->Left;
+                BST->Father = NULL;
+                DestroyNode(temp);
+            }
+            else if (BST->Right) {
+                BST = BST->Right;
+                BST->Father = NULL;
+                DestroyNode(temp);
+            }
+            else {
+                BST = NULL;
+                DestroyNode(temp);
+            }
+        }
+        else {
+            DetachNode(BST);
+        }
+    }
+}
+void FreeBST(NodeEmployee* BST) {
+    if (BST == NULL) return;
+    FreeBST(BST->Left);
+    FreeBST(BST->Right);
+    delete BST;
+}
+int main() {
+    NodeEmployee* BST = NULL;
+    int Counter = 0;
+    while (true) {
+        cout << "== LA JUEGOSFERA ==" << endl << endl;
+        int MenuSelector;
+        cout << "-- Menu de empleados --" << endl;
+        cout << "1. Anadir nuevo empleado" << endl;
+        cout << "2. Mostrar lista de empleados" << endl;
+        cout << "3. Buscar empleado" << endl;
+        cout << "4. Recorrer lista de empleados" << endl;
+        cout << "5. Eliminar empleado de la lista" << endl;
+        cout << "6. Salir" << endl;
+        cout << "Elija una opcion: ";
+        cin >> MenuSelector;
+        if (MenuSelector < 1 || MenuSelector > 6) {
+            cout << "Valor invalido. Eliga una opcion entre 1 y 6.\n\n";
+            system("pause");
+            system("cls");
+            continue;
+        }
+        else if (MenuSelector == 1) {
+            int CreateId = 0;
+            string CreateName = "";
+            float CreateSalary = 0;
+            cout << "\n-ANADIR EMPLEADO-\n";
+            cout << "Ingrese la nueva ID del empleado: ";
+            cin >> CreateId;
+            cout << "Ingrese el nombre completo del empleado: ";
+            cin.ignore();
+            getline(cin, CreateName);
+            cout << "Ingrese el salario quincenal del empleado: ";
+            cin >> CreateSalary;
+            if (Search(BST, CreateId)) {
+                cout << "ID duplicado, no se inserto\n";
+            }
+            else {
+                InsertNode(BST, CreateId, CreateName, CreateSalary, NULL);
+                cout << "Empleado agregado con exito.\n";
+            }
+            cout << endl;
+            system("pause");
+            system("cls");
+            continue;
+        }
+        else if (MenuSelector == 2) {
+            cout << "\n-MOSTRAR LISTA DE EMPLEADOS-\n";
+            cout << "Inicio\n";
+            ShowBST(BST, Counter);
+            cout << "Final\n";
+            system("pause");
+            system("cls");
+            continue;
+        }
+        else if (MenuSelector == 3) {
+            int SearchId;
+            cout << "\n-BUSCAR EMPLEADO-\n";
+            cout << "Digite su ID de empleado: ";
+            cin >> SearchId;
+            if (Search(BST, SearchId) == true) {
+                cout << "ID " << SearchId << " encontrada!\n\n";
+                cout << "| Informacion de empleado |\n";
+                cout << "ID: " << BST->Id << endl;
+                cout << "Nombre: " << BST->Name << endl;
+                cout << "Salario: " << BST->Salary << endl;
+            }
+            else {
+                cout << "ID " << SearchId << " no identificada...\n";
+            }
+            cout << endl;
+            system("pause");
+            system("cls");
+            continue;
+        }
+        else if (MenuSelector == 4) {
+            cout << "\n-RECORRER LISTA DE EMPLEADOS-\n";
+            cout << endl;
+            continue;
+        }
+        else if (MenuSelector == 5) {
+            cout << "\n-ELIMINAR EMPLEADO-\n";
+            cout << endl;
+            continue;
+        }
+        else if (MenuSelector == 6) {
+            cout << "\n-HASTA LUEGO!-\n";
+            system("pause");
+            system("cls");
+            break;
+        }
+    }
+    //FreeBST(BST);
+    return 0;
+}
